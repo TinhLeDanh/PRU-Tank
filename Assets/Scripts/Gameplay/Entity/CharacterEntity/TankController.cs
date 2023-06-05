@@ -51,7 +51,7 @@ public class TankController : PlayerCharacterEntity
     {
         InputHandle();
 
-        if (data is ConstructionTank constructionData)
+        if (data is ConstructionTankSO constructionData)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -143,4 +143,6 @@ public class TankController : PlayerCharacterEntity
         };
         GetComponent<TankFirer>().Fire(b);
     }
+
+    
 }

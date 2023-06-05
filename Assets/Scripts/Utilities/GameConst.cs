@@ -11,4 +11,8 @@ public class GameConst
     public const string ConstrucionStuff_FileName = "Construction Stuff";
     public const string ConstructionStuff_MenuName = "GameData/Construction/Construction Stuff";
     public const int ConstructionStuff_Order = -9997;
+
+    public const string ConstrucionStuffList_FileName = "Construction Stuff List";
+    public const string ConstructionStuffList_MenuName = "GameData/Construction/Construction Stuff List";
+    public const int ConstructionStuffList_Order = -9996;
 }

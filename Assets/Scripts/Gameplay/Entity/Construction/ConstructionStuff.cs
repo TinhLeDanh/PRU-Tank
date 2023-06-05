@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConstructionStuffController : MonoBehaviour
+public class ConstructionStuff : MonoBehaviour
 {
     public Vector2 offset;
 }
