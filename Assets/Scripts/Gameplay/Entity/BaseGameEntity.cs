@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BaseGameEntity : MonoBehaviour
 {
+    public BaseEntityData data;
+
     protected IGameEntityComponent[] EntityComponents { get; private set; }
 
     private void Awake()

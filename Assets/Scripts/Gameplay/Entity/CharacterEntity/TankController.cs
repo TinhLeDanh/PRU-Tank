@@ -4,15 +4,20 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-public class TankController : MonoBehaviour
+public class TankController : PlayerCharacterEntity
 {
     // Start is called before the first frame update
-    private Tank _tank;
+    private Entity.Tank _tank;
 
+    [Header("Sprite")]
     public Sprite tankUp;
     public Sprite tankDown;
     public Sprite tankLeft;
     public Sprite tankRight;
+
+    [Header("Movement")]
+    public InputMovementType inputMovementType;
+
     private TankMover _tankMover;
     private CameraController _cameraController;
     private SpriteRenderer _renderer;
@@ -20,7 +25,7 @@ public class TankController : MonoBehaviour
 
     private void Start()
     {
-        _tank = new Tank
+        _tank = new Entity.Tank
         {
             Name = "Default",
             Direction = Direction.Down,
@@ -31,7 +36,7 @@ public class TankController : MonoBehaviour
             Guid = GUID.Generate()
         };
 
-        if(camera == null)
+        if (camera == null)
             camera = Camera.main.gameObject;
 
         //gameObject.transform.position = _tank.Position;
@@ -44,22 +49,67 @@ public class TankController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        InputHandle();
+
+        if (data is ConstructionTank constructionData)
         {
-            Move(Direction.Left);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                constructionData.ApplyStuff(0, transform.position);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                constructionData.ApplyStuff(1, transform.position);
+            }
         }
-        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        
+    }
+
+    private void InputHandle()
+    {
+        Direction dir = Direction.None;
+
+        if (inputMovementType == InputMovementType.MoveByKey)
         {
-            Move(Direction.Down);
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                dir = Direction.Left;
+            }
+            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                dir = Direction.Down;
+            }
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                dir = Direction.Right;
+            }
+            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                dir = Direction.Up;
+            }
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        else if (inputMovementType == InputMovementType.MoveByKeyDown)
         {
-            Move(Direction.Right);
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                dir = Direction.Left;
+            }
+            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                dir = Direction.Down;
+            }
+            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                dir = Direction.Right;
+            }
+            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                dir = Direction.Up;
+            }
         }
-        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            Move(Direction.Up);
-        }
+
+        if (dir != Direction.None)
+            Move(dir);
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -71,7 +121,8 @@ public class TankController : MonoBehaviour
     {
         _tank.Position = _tankMover.Move(direction);
         _tank.Direction = direction;
-        _cameraController.Move(_tank.Position);
+        if (_cameraController != null)
+            _cameraController.Move(_tank.Position);
         _renderer.sprite = direction switch
         {
             Direction.Down => tankDown,

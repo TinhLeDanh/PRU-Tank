@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Entity;
 using UnityEngine;
 
-public class TankMover : MonoBehaviour
+public class TankMover : BaseGameEntityComponent<BaseGameEntity>
 {
     // Start is called before the first frame update
 
@@ -17,9 +17,9 @@ public class TankMover : MonoBehaviour
         speed = 1;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void EntityUpdate()
     {
+        base.EntityUpdate();
     }
 
     public Vector3 Move(Direction direction)
@@ -70,4 +70,6 @@ public class TankMover : MonoBehaviour
         gameObject.transform.position = currentPos;
         return currentPos;
     }
+
+    
 }
