@@ -1,0 +1,20 @@
+﻿{
+  "t0": {
+    "module": "commonjs",
+    "sourceMap": true
+  },
+  "t1": [
+    "node_modules",
+    "123"
+  ],
+  "t2": [
+    {
+      "module": "commonjs",
+      "sourceMap": true
+    },
+    {
+      "module": "22",
+      "sourceMap": true
+    }
+  ]
+}
