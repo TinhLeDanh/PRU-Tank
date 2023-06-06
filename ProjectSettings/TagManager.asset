@@ -7,9 +7,6 @@ TagManager:
   - Enemy
   - bullet
   - bulletEnemy
-  - choose1
-  - choose2
-  - choose3
   layers:
   - Default
   - TransparentFX
