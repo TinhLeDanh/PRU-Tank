@@ -15,9 +15,4 @@ MonoBehaviour:
   tankName: cons
   health: 0
   speed: 0
-  stuffs:
-  - {fileID: 6658664686965977329, guid: f9f5dfce2900af4489134f7126c6a5f0, type: 3}
-  - {fileID: 8749571063636565475, guid: d2a2d68f99374654087ab7264a602c22, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  stuffs: {fileID: 11400000, guid: ce47029d7b0bff94b9b4b596ad1e49ce, type: 2}

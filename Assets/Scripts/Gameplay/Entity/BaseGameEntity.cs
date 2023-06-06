@@ -37,17 +37,25 @@ public class BaseGameEntity : MonoBehaviour
 
     private void Update()
     {
-
         for (int i = 0; i < EntityComponents.Length; ++i)
         {
             if (EntityComponents[i].Enabled)
                 EntityComponents[i].EntityUpdate();
         }
+
         EntityUpdate();
     }
 
     protected virtual void EntityUpdate()
     {
+    }
 
+    private void FixedUpdate()
+    {
+        EntityFixedUpdate();
+    }
+
+    protected virtual void EntityFixedUpdate()
+    {
     }
 }
