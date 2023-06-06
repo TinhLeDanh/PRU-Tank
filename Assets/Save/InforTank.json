@@ -1,8 +1,4 @@
-﻿{
-  "t0": {
-    "module": "commonjs",
-    "sourceMap": true
-  },
+{
   "t1": [
     "node_modules",
     "123"
