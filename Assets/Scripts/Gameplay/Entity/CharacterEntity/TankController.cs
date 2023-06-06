@@ -23,8 +23,10 @@ public class TankController : PlayerCharacterEntity
     private SpriteRenderer _renderer;
     public new GameObject camera;
 
-    private void Start()
+    protected override void EntityStart()
     {
+        base.EntityStart();
+
         _tank = new Entity.Tank
         {
             Name = "Default",
@@ -46,26 +48,14 @@ public class TankController : PlayerCharacterEntity
         Move(Direction.Down);
     }
 
-    // Update is called once per frame
-    private void Update()
+    protected override void EntityUpdate()
     {
-        InputHandle();
+        base.EntityUpdate();
 
-        if (data is ConstructionTankSO constructionData)
-        {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                constructionData.ApplyStuff(0, transform.position);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                constructionData.ApplyStuff(1, transform.position);
-            }
-        }
-        
+        InputHandle();
     }
 
-    private void InputHandle()
+    protected void InputHandle()
     {
         Direction dir = Direction.None;
 

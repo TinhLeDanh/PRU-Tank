@@ -8,9 +8,18 @@ public class ConstructionTankSO : Tank
     [SerializeField]
     public ConstructionStuffListSO stuffs;
 
-    public void ApplyStuff(int order, Vector2 position)
+    public ConstructionStuff ApplyStuff(int order, Vector2 position, bool isOnAnotherStuff = false, ConstructionStuff currentStuff = null)
     {
-        GameObject go = Instantiate(stuffs.stuffList[order].gameObject, position + stuffs.stuffList[order].offset, Quaternion.identity);
+        if (isOnAnotherStuff && currentStuff != null)
+        {
+            Destroy(currentStuff.gameObject);
 
+        }
+
+        GameObject go = Instantiate(stuffs.stuffList[order].gameObject, position + stuffs.stuffList[order].offset, Quaternion.identity);
+        ConstructionStuff constructionStuff = go.GetComponent<ConstructionStuff>();
+        constructionStuff.StuffIndex = order;
+
+        return constructionStuff;
     }
 }
