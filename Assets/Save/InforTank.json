@@ -1,4 +1,4 @@
-﻿{
+{
   "t0": {
     "module": "commonjs",
     "sourceMap": true
@@ -16,5 +16,9 @@
       "module": "22",
       "sourceMap": true
     }
-  ]
+  ],
+  "t3": {
+    "module": "6570d2d4-0b9a-4a4f-977b-2a8797e59a2f",
+    "sourceMap": false
+  }
 }
