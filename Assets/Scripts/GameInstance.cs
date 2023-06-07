@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameInstance : MonoBehaviour
 {
     public MapGenerator mapGenerator;
 
-    public GameObject tank;
-    public GameObject enemy;
+    public PlayerCharacterEntity tank;
+    public EnemyCharacterEntity enemy;
 
     private void Start()
     {
-        
+        SpawnEnemy();
     }
 
     public void OnMapGenerated()
@@ -21,5 +22,10 @@ public class GameInstance : MonoBehaviour
 
         Instantiate(tank, spawnPos, Quaternion.identity);
         Instantiate(enemy, spawnPos, Quaternion.identity);
+    }
+
+    private void SpawnEnemy()
+    {
+        Instantiate(enemy, Vector2.zero , Quaternion.identity);
     }
 }
