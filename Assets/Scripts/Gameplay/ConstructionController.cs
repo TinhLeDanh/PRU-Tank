@@ -6,6 +6,8 @@ public class ConstructionController : MonoBehaviour
 {
     public static ConstructionController Instance { get; private set; }
 
+    public int width;
+    public int height;
     public int[,] stuffMatrix;
 
     private void Awake()
@@ -13,7 +15,7 @@ public class ConstructionController : MonoBehaviour
         if(Instance == null)
             Instance = this;
 
-        stuffMatrix = new int[20, 20];
+        stuffMatrix = new int[width, height];
     }
 
     private void Start()
@@ -33,8 +35,8 @@ public class ConstructionController : MonoBehaviour
                 stuffMatrix[i, j] = value;
     }
 
-    public void ApplyStuffToMatrix()
+    public void ApplyStuffToMatrix(int x, int y, int id)
     {
-
+        stuffMatrix[x, y] = id;
     }
 }

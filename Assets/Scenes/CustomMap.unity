@@ -152,6 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd1b99ba0151b241a1ba34a77235773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  width: 17
+  height: 9
 --- !u!4 &548421736
 Transform:
   m_ObjectHideFlags: 0
@@ -414,7 +416,6 @@ MonoBehaviour:
   tankDown: {fileID: 0}
   tankLeft: {fileID: 0}
   tankRight: {fileID: 0}
-  inputMovementType: 0
   camera: {fileID: 0}
 --- !u!1001 &4700879804610479682
 PrefabInstance:
@@ -429,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4693325936895465045, guid: 781ac6f21c9b82241b3c3a4d87fd66a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4693325936895465045, guid: 781ac6f21c9b82241b3c3a4d87fd66a6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -466,6 +467,10 @@ PrefabInstance:
     - target: {fileID: 4693325936895465045, guid: 781ac6f21c9b82241b3c3a4d87fd66a6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747400480676148929, guid: 781ac6f21c9b82241b3c3a4d87fd66a6, type: 3}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5879440730193080839, guid: 781ac6f21c9b82241b3c3a4d87fd66a6, type: 3}
       propertyPath: m_Name
