@@ -191,3 +191,4 @@ MonoBehaviour:
   camera: {fileID: 0}
   state: 0
   gameObject: {fileID: 5879440730193080839}
+  _currentStuffIndex: 0

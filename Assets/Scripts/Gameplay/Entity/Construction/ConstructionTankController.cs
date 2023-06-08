@@ -132,13 +132,11 @@ public class ConstructionTankController : TankController
         {
             _currentStuff = null;
             state = ConstructionTankState.None;
-            //_currentStuffIndex = -1;
         }
         else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Stuff"))
         {
             state = ConstructionTankState.OnStuff;
             _currentStuff = raycastHit.collider.gameObject.GetComponent<ConstructionStuff>();
-            //_currentStuffIndex = _currentStuff.StuffIndex;
         }
     }
 }

@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce52482f72ca442e6b3880f73fb4f360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  moveByCells: 1
+  speed: 5
+  moveByCells: 0
 --- !u!114 &658675346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,11 +162,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d734fd77aae440649442faa0a890101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 2769ae69b4b819245835a53dc4f0aa20, type: 2}
   tankUp: {fileID: 21300000, guid: c2500d85418f749429defd72247fa182, type: 3}
   tankDown: {fileID: 21300000, guid: 5961b410be50c40db80d4336eb9ba4f6, type: 3}
   tankLeft: {fileID: 21300000, guid: 13bdef6e50b2c4a339bafdc7f7f58ff4, type: 3}
   tankRight: {fileID: 21300000, guid: f59f1eac0661d4c9ba950e0e5d444b6d, type: 3}
-  inputMovementType: 0
   camera: {fileID: 0}
 --- !u!114 &711902216727361652
 MonoBehaviour:
