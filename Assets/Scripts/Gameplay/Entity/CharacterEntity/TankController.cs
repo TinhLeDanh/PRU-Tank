@@ -15,9 +15,6 @@ public class TankController : PlayerCharacterEntity
     public Sprite tankLeft;
     public Sprite tankRight;
 
-    [Header("Movement")]
-    public InputMovementType inputMovementType;
-
     private TankMover _tankMover;
     private CameraController _cameraController;
     private SpriteRenderer _renderer;
@@ -33,7 +30,6 @@ public class TankController : PlayerCharacterEntity
             Direction = Direction.Down,
             Hp = 10,
             Point = 0,
-            //Position = new Vector3(Random.Range(0, 20), Random.Range(0, 20), 0),
             Position = new Vector3(1, 0, 0),
             Guid = GUID.Generate()
         };
@@ -45,7 +41,6 @@ public class TankController : PlayerCharacterEntity
         _tankMover = gameObject.GetComponent<TankMover>();
         _cameraController = camera.GetComponent<CameraController>();
         _renderer = gameObject.GetComponent<SpriteRenderer>();
-        Move(Direction.Down);
     }
 
     protected override void EntityUpdate()
@@ -55,51 +50,24 @@ public class TankController : PlayerCharacterEntity
         InputHandle();
     }
 
-    protected void InputHandle()
+    protected virtual void InputHandle()
     {
-        Direction dir = Direction.None;
-
-        if (inputMovementType == InputMovementType.MoveByKey)
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                dir = Direction.Left;
-            }
-            else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            {
-                dir = Direction.Down;
-            }
-            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                dir = Direction.Right;
-            }
-            else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            {
-                dir = Direction.Up;
-            }
+            Move(Direction.Left);
         }
-        else if (inputMovementType == InputMovementType.MoveByKeyDown)
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
-            {
-                dir = Direction.Left;
-            }
-            else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                dir = Direction.Down;
-            }
-            else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
-            {
-                dir = Direction.Right;
-            }
-            else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                dir = Direction.Up;
-            }
+            Move(Direction.Down);
         }
-
-        if (dir != Direction.None)
-            Move(dir);
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Move(Direction.Right);
+        }
+        else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            Move(Direction.Up);
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -107,7 +75,7 @@ public class TankController : PlayerCharacterEntity
         }
     }
 
-    private void Move(Direction direction)
+    protected void Move(Direction direction)
     {
         _tank.Position = _tankMover.Move(direction);
         _tank.Direction = direction;
@@ -134,5 +102,5 @@ public class TankController : PlayerCharacterEntity
         GetComponent<TankFirer>().Fire(b);
     }
 
-    
+
 }

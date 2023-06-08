@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Entity;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TankMover : BaseGameEntityComponent<BaseGameEntity>
@@ -12,9 +13,9 @@ public class TankMover : BaseGameEntityComponent<BaseGameEntity>
 
     public bool moveByCells;
 
+
     void Start()
     {
-        speed = 1;
     }
 
     public override void EntityUpdate()
@@ -47,6 +48,8 @@ public class TankMover : BaseGameEntityComponent<BaseGameEntity>
         }
         else
         {
+            //if(Vector2.Distance(gameObject.transform.position, currentPos) <= .05f)
+            //{
             switch (direction)
             {
                 case Direction.Down:
@@ -63,13 +66,19 @@ public class TankMover : BaseGameEntityComponent<BaseGameEntity>
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+
             }
+            //}
+
         }
-        
 
         gameObject.transform.position = currentPos;
+
         return currentPos;
     }
 
-    
+    IEnumerator Delay(float time)
+    {
+        yield return new WaitForSeconds(time);
+    }
 }

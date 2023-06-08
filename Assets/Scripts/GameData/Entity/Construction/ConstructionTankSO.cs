@@ -20,6 +20,9 @@ public class ConstructionTankSO : Tank
         ConstructionStuff constructionStuff = go.GetComponent<ConstructionStuff>();
         constructionStuff.StuffIndex = order;
 
+        if (ConstructionController.Instance != null)
+            ConstructionController.Instance.ApplyStuffToMatrix((int)position.x, (int)position.y, order);
+
         return constructionStuff;
     }
 }
