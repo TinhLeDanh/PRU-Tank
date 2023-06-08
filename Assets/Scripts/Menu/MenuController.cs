@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -33,6 +34,9 @@ public class MenuController : MonoBehaviour
                 beep_switch.Play(0);
             }
             UpdateUI();
+        }else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            LoadScenes();
         }
     }
 
@@ -56,6 +60,22 @@ public class MenuController : MonoBehaviour
                choose2.SetActive(false);
                choose3.SetActive(true);
                break;
+               
+        }
+    }
+
+    void LoadScenes()
+    {
+        switch (choose)
+        {
+            case 0:
+                SceneManager.LoadSceneAsync("MenuChooseMap");
+                break;
+            case 1:
+                break;
+            case 2: 
+                SceneManager.LoadSceneAsync("CustomMap");
+                break;
                
         }
     }
