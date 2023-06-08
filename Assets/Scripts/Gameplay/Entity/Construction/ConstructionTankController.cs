@@ -20,9 +20,12 @@ public class ConstructionTankController : TankController
     public int _currentStuffIndex;
     private ConstructionTankSO constructionData;
     private RaycastHit2D raycastHit;
-
+    public GameObject gameObject;
+    public bool blinking;
     protected override void EntityStart()
     {
+
+        StartCoroutine(Blink(gameObject));
         base.EntityStart();
 
         maxX = ConstructionController.Instance.width;
@@ -88,7 +91,20 @@ public class ConstructionTankController : TankController
         if (dir != Direction.None)
             Move(dir);
     }
+    IEnumerator Blink(GameObject obj)
+    {
+        Renderer objRenderer = obj.GetComponent<Renderer>();
 
+        blinking = true;
+        while(blinking)
+        {
+            objRenderer.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            objRenderer.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+        }
+
+    }
     private void HandleStuff()
     {
         if (constructionData != null)
