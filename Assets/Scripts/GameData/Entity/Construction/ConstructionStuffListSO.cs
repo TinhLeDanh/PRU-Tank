@@ -7,6 +7,4 @@ public class ConstructionStuffListSO : BaseEntityData
 {
     public int maxStuffPlayerCanUse;
     public List<ConstructionStuff> stuffList;
-
-    public List<ConstructionStuff> specialStuffList;
 }

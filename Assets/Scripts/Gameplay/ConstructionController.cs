@@ -9,8 +9,8 @@ public class ConstructionController : MonoBehaviour
 
     public int width;
     public int height;
+    public Vector2 spawnPos;
     public int[,] stuffMatrix;
-    public ConstructionStuff baseStuff;
     public ConstructionStuffListSO stuffs;
 
     private ChangeJson saveSystem;
@@ -39,13 +39,12 @@ public class ConstructionController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            ConstructionMapData mapObject = saveSystem.GetObjectByJson<ConstructionMapData>("t4");
-            LoadMap(mapObject);
+            LoadMap();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SceneManager.LoadSceneAsync("Menu"); 
+            SceneManager.LoadSceneAsync("Menu");
         }
     }
 
@@ -64,19 +63,22 @@ public class ConstructionController : MonoBehaviour
             }
     }
 
-    private void LoadMap(ConstructionMapData map)
+    public bool LoadMap()
     {
+        ConstructionMapData map = saveSystem.GetObjectByJson<ConstructionMapData>("t4");
+        if (map == null)
+            return false;
+
         stuffMatrix = map.matrix;
 
         for (int i = 0; i < stuffMatrix.GetLength(0); i++)
-        {
             for (int j = 0; j < stuffMatrix.GetLength(1); j++)
             {
-                if (stuffMatrix[i, j] != -1)
+                if (stuffMatrix[i, j] != -1 && (i != spawnPos.x && j != spawnPos.y))
                     Instantiate(stuffs.stuffList[stuffMatrix[i, j]], new Vector2(i, j), Quaternion.identity);
             }
 
-        }
+        return true;
     }
 
     private void CreateBase()

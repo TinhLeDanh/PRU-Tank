@@ -79,8 +79,8 @@ public class TankController : PlayerCharacterEntity
     {
         _tank.Position = _tankMover.Move(direction);
         _tank.Direction = direction;
-        if (_cameraController != null)
-            _cameraController.Move(_tank.Position);
+        //if (_cameraController != null)
+        //    _cameraController.Move(_tank.Position);
         _renderer.sprite = direction switch
         {
             Direction.Down => tankDown,
