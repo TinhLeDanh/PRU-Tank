@@ -18,7 +18,7 @@ public class ConstructionTankController : TankController
     private int maxX;
     private int maxY;
     private ConstructionStuff _currentStuff;
-    private int _currentStuffIndex;
+    public int _currentStuffIndex;
     private ConstructionTankSO constructionData;
     private RaycastHit2D raycastHit;
     
@@ -28,8 +28,12 @@ public class ConstructionTankController : TankController
     private bool delayBtnRight = true;
     private float delayTime = 0.4f;
 
+    public GameObject gameObject;
+    public bool blinking;
     protected override void EntityStart()
     {
+
+        StartCoroutine(Blink(gameObject));
         base.EntityStart();
 
         maxX = ConstructionController.Instance.width;
@@ -155,7 +159,53 @@ public class ConstructionTankController : TankController
         if (dir != Direction.None)
             Move(dir);
     }
+    IEnumerator Blink(GameObject obj)
+    {
+        Renderer objRenderer = obj.GetComponent<Renderer>();
+        blinking = true;
+        while(blinking)
+        {
+            objRenderer.enabled = false;
+            yield return new WaitForSeconds(0.5f);
+            objRenderer.enabled = true;
+            yield return new WaitForSeconds(0.5f);
+        }
 
+    }
+    private void HandleStuff()
+    {
+        if (constructionData != null)
+        {
+            if (Input.GetKeyDown(KeyCode.X))
+            {
+                if ((_currentStuff != null && _currentStuff.StuffIndex == _currentStuffIndex)
+                    || (_currentStuff == null && _currentStuffIndex == -1))
+                    _currentStuffIndex++;
+
+                if (_currentStuffIndex >= constructionData.stuffs.maxStuffPlayerCanUse)
+                {
+                    _currentStuffIndex = -1;
+                }
+
+                if (constructionData.ApplyStuff(_currentStuffIndex, transform.position, state == ConstructionTankState.OnStuff, _currentStuff) != null)
+                    state = ConstructionTankState.OnStuff;
+                ;
+
+            }
+        }
+
+        raycastHit = Physics2D.CircleCast(transform.position, .05f, transform.forward, .05f);
+        if (raycastHit.collider == null)
+        {
+            _currentStuff = null;
+            state = ConstructionTankState.None;
+        }
+        else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Stuff"))
+        {
+            state = ConstructionTankState.OnStuff;
+            _currentStuff = raycastHit.collider.gameObject.GetComponent<ConstructionStuff>();
+        }
+    }
     IEnumerator DelayBtnUp()
     {
         delayBtnUp = false; // Đang delay
@@ -190,41 +240,5 @@ public class ConstructionTankController : TankController
         yield return new WaitForSeconds(delayTime); // Tạm dừng thực thi của hàm trong 0.5 giây
 
         delayBtnRight = true; // Kết thúc delay
-    }
-
-    private void HandleStuff()
-    {
-        if (constructionData != null)
-        {
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                _currentStuffIndex++;
-                if (_currentStuffIndex >= constructionData.stuffs.stuffList.Count)
-                {
-                    _currentStuffIndex = 0;
-                }
-
-                //Debug.Log(_currentStuffIndex);
-
-                constructionData.ApplyStuff(_currentStuffIndex,
-                    transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
-
-                state = ConstructionTankState.OnStuff;
-            }
-        }
-
-        raycastHit = Physics2D.CircleCast(transform.position, .05f, transform.forward, .05f);
-        if (raycastHit.collider == null)
-        {
-            _currentStuff = null;
-            state = ConstructionTankState.None;
-            _currentStuffIndex = -1;
-        }
-        else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Stuff"))
-        {
-            state = ConstructionTankState.OnStuff;
-            _currentStuff = raycastHit.collider.gameObject.GetComponent<ConstructionStuff>();
-            _currentStuffIndex = _currentStuff.StuffIndex;
-        }
     }
 }

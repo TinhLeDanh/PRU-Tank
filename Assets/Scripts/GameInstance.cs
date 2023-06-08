@@ -10,9 +10,34 @@ public class GameInstance : MonoBehaviour
     public PlayerCharacterEntity tank;
     public EnemyCharacterEntity enemy;
 
+    private ConstructionController constructionController;
+    private int[,] stuffMatrix;
+
+    private void Awake()
+    {
+        constructionController = GetComponent<ConstructionController>();
+       
+    }
+
     private void Start()
     {
-        SpawnEnemy();
+        //SpawnEnemy();
+        SetupCamera();
+        InitConstructionMap();
+    }
+
+    private void SetupCamera()
+    {
+        Camera cam = Camera.main;
+        cam.transform.position = new Vector3(constructionController.width / 2, constructionController.height / 2, -10);
+    }
+
+    private void InitConstructionMap()
+    {
+        if (constructionController.LoadMap())
+        {
+            Instantiate(tank, constructionController.spawnPos, Quaternion.identity);
+        }
     }
 
     public void OnMapGenerated()
@@ -27,5 +52,10 @@ public class GameInstance : MonoBehaviour
     private void SpawnEnemy()
     {
         Instantiate(enemy, Vector2.zero , Quaternion.identity);
+    }
+
+    private void SpawnPlayer()
+    {
+
     }
 }
