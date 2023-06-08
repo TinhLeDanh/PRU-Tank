@@ -17,14 +17,21 @@ public class MenuChooseMapController : MonoBehaviour
     private GameObject instancePointer;
 
     private int choose = 0;
+    
+    private ChangeJson saveSystem;
 
-    private int countMap = 5;
+    private int countMap = 0;
+    
     public TMP_FontAsset  font;
-    // Start is called before the first frame update
+    
     private float x = -21.6f, y= 120f, z = 0f;
+    
     void Start()
     {
-        RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
+         saveSystem = GetComponent<ChangeJson>();
+         List<string> lst = saveSystem.GetAllKeyMap();
+         countMap = lst.Count;
+         RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
         for (int i = 0; i < countMap; i++)
         {
             GameObject textObject = new GameObject("Text Object");
