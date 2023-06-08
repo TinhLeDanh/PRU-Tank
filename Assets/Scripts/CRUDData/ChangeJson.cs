@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
@@ -8,19 +7,10 @@ using UnityEngine;
 
 public class ChangeJson : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void OnButtonClick()
     {
-        var t = new t0()
+        var t = new T0()
         {
             module = Guid.NewGuid().ToString(),
             sourceMap = false
@@ -30,7 +20,7 @@ public class ChangeJson : MonoBehaviour
     }
     public void OnButtonClick2()
     {
-        var a = GetObjectByJson<t0>("t3");
+        var a = GetObjectByJson<T0>("t3");
         if (a is not null)
         {
             Debug.Log(222+a.module);
@@ -42,7 +32,7 @@ public class ChangeJson : MonoBehaviour
     }
     public void OnButtonClick3()
     {
-        var a = RemoveObjectByJson<t0>("t3");
+        var a = RemoveObjectByJson("t3");
             Debug.Log(a);
     }
 
@@ -59,7 +49,7 @@ public class ChangeJson : MonoBehaviour
             File.WriteAllText(Application.dataPath + "/Save/InforTank.json", jsonObject.ToString());
             return true;
         }
-        catch (Exception e)
+        catch
         {
             return false;
         }
@@ -72,16 +62,16 @@ public class ChangeJson : MonoBehaviour
             string filePath = Application.dataPath + "/Save/InforTank.json";
             string jsonString = File.ReadAllText(filePath);
             JObject jsonObject = JObject.Parse(jsonString);
-            string t0Json = jsonObject[key].ToString();
+            var t0Json = jsonObject[key]!.ToString();
             var myObj = JsonConvert.DeserializeObject<T>(t0Json);
             return myObj;
         }
-        catch (Exception e)
+        catch 
         {
             return default;
         }
     }
-    public bool RemoveObjectByJson<T>(string key)
+    public bool RemoveObjectByJson(string key)
     {
         try
         {
@@ -92,14 +82,32 @@ public class ChangeJson : MonoBehaviour
             File.WriteAllText(Application.dataPath + "/Save/InforTank.json", jsonObject.ToString());
             return true;
         }
-        catch (Exception e)
+        catch 
         {
             return false;
         }
     }
 
+    public static List<string> GetAllKeyMap()
+    {
+        try
+        {
+            var listKey = new List<string>();
+            var allColors = Enum.GetValues(typeof(KeyMapEnum));
+            foreach (KeyMapEnum key in allColors)
+            {
+                listKey.Add(key.ToString());
+            }
+            return listKey;
+        }
+        catch 
+        {
+            return null;
+        }
+    }
+
     [Serializable]
-    public class t0
+    public class T0
     {
         public string module { get; set; }
         public bool sourceMap { get; set; }

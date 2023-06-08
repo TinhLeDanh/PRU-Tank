@@ -33,7 +33,7 @@ public class ConstructionController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ConstructionMapData mapObject = new ConstructionMapData("map", stuffMatrix);
+            ConstructionMapData mapObject = new ConstructionMapData("map custom", stuffMatrix);
             saveSystem.AddObjectByJson("t4", mapObject);
         }
 
