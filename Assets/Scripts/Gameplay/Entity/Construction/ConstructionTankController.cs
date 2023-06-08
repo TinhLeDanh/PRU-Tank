@@ -25,8 +25,8 @@ public class ConstructionTankController : TankController
     {
         base.EntityStart();
 
-        maxX = ConstructionController.Instance.width / 2;
-        maxY = ConstructionController.Instance.height / 2;
+        maxX = ConstructionController.Instance.width;
+        maxY = ConstructionController.Instance.height;
 
         _currentStuffIndex = -1;
 
@@ -58,14 +58,14 @@ public class ConstructionTankController : TankController
 
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            if (transform.position.x <= -maxX)
+            if (transform.position.x <= 0)
                 return;
 
             dir = Direction.Left;
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
-            if (transform.position.y <= -maxY)
+            if (transform.position.y <= 0)
                 return;
 
             dir = Direction.Down;
@@ -100,6 +100,8 @@ public class ConstructionTankController : TankController
                 {
                     _currentStuffIndex = 0;
                 }
+
+                //Debug.Log(_currentStuffIndex);
 
                 constructionData.ApplyStuff(_currentStuffIndex,
                     transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
