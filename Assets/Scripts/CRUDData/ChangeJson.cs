@@ -45,6 +45,9 @@ public class ChangeJson : MonoBehaviour
         var a = RemoveObjectByJson<t0>("t3");
             Debug.Log(a);
     }
+
+    
+
     public bool AddObjectByJson<T>(string key, T objectJson)
     {
         try

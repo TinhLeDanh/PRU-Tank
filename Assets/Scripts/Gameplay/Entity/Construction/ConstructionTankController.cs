@@ -1,3 +1,4 @@
+using Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class ConstructionTankController : TankController
 
     public ConstructionTankState state;
 
+    private int maxX;
+    private int maxY;
     private ConstructionStuff _currentStuff;
     private int _currentStuffIndex;
     private ConstructionTankSO constructionData;
@@ -21,6 +24,9 @@ public class ConstructionTankController : TankController
     protected override void EntityStart()
     {
         base.EntityStart();
+
+        maxX = ConstructionController.Instance.width;
+        maxY = ConstructionController.Instance.height;
 
         _currentStuffIndex = -1;
 
@@ -32,6 +38,59 @@ public class ConstructionTankController : TankController
     {
         base.EntityUpdate();
 
+    }
+
+    protected override void EntityFixedUpdate()
+    {
+        base.EntityFixedUpdate();
+
+    }
+
+    protected override void InputHandle()
+    {
+        ConstructionMovement();
+        HandleStuff();
+    }
+
+    private void ConstructionMovement()
+    {
+        Direction dir = Direction.None;
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (transform.position.x <= 0)
+                return;
+
+            dir = Direction.Left;
+        }
+        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (transform.position.y <= 0)
+                return;
+
+            dir = Direction.Down;
+        }
+        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (transform.position.x >= maxX)
+                return;
+
+            dir = Direction.Right;
+        }
+        else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (transform.position.y >= maxY)
+                return;
+
+            dir = Direction.Up;
+        }
+
+        if (dir != Direction.None)
+            Move(dir);
+    }
+
+    private void HandleStuff()
+    {
         if (constructionData != null)
         {
             if (Input.GetKeyDown(KeyCode.X))
@@ -41,6 +100,8 @@ public class ConstructionTankController : TankController
                 {
                     _currentStuffIndex = 0;
                 }
+
+                //Debug.Log(_currentStuffIndex);
 
                 constructionData.ApplyStuff(_currentStuffIndex,
                     transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
@@ -52,24 +113,15 @@ public class ConstructionTankController : TankController
         raycastHit = Physics2D.CircleCast(transform.position, .05f, transform.forward, .05f);
         if (raycastHit.collider == null)
         {
-            Debug.DrawRay(transform.position, raycastHit.point, Color.white);
             _currentStuff = null;
             state = ConstructionTankState.None;
             _currentStuffIndex = -1;
         }
         else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Stuff"))
         {
-            Debug.DrawRay(transform.position, raycastHit.point, Color.black);
             state = ConstructionTankState.OnStuff;
             _currentStuff = raycastHit.collider.gameObject.GetComponent<ConstructionStuff>();
             _currentStuffIndex = _currentStuff.StuffIndex;
         }
-    }
-
-    protected override void EntityFixedUpdate()
-    {
-        base.EntityFixedUpdate();
-
-        
     }
 }
