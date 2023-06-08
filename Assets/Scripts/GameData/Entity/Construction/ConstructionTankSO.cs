@@ -12,6 +12,15 @@ public class ConstructionTankSO : Tank
     {
         if (isOnAnotherStuff && currentStuff != null)
         {
+            foreach (ConstructionStuff cons in ConstructionController.Instance.stuffs)
+            {
+                if (cons.transform.position.x == position.x && cons.transform.position.y == position.y)
+                {
+                    ConstructionController.Instance.stuffs.Remove(cons);
+                    break;
+                }
+            }
+
             Destroy(currentStuff.gameObject);
 
         }
@@ -19,12 +28,12 @@ public class ConstructionTankSO : Tank
         if (order == -1)
             return null;
 
-        GameObject go = Instantiate(stuffs.stuffList[order].gameObject, position + stuffs.stuffList[order].offset, Quaternion.identity);
+        GameObject go = Instantiate(stuffs.stuffList[order].gameObject, position, Quaternion.identity);
         ConstructionStuff constructionStuff = go.GetComponent<ConstructionStuff>();
         constructionStuff.StuffIndex = order;
 
         if (ConstructionController.Instance != null)
-            ConstructionController.Instance.ApplyStuffToMatrix((int)position.x, (int)position.y, order);
+            ConstructionController.Instance.ApplyStuffToMatrix((int)position.x, (int)position.y, order, constructionStuff);
 
         return constructionStuff;
     }

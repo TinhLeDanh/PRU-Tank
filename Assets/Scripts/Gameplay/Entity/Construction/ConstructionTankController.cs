@@ -12,14 +12,26 @@ public class ConstructionTankController : TankController
         OnStuff
     }
 
+    public enum StuffState
+    {
+        Spawned,
+        Moved,
+    }
+
     public ConstructionTankState state;
 
     private int maxX;
     private int maxY;
-    private ConstructionStuff _currentStuff;
+    public ConstructionStuff _currentStuff;
     public int _currentStuffIndex;
     private ConstructionTankSO constructionData;
-    private RaycastHit2D raycastHit;
+    private StuffState stuffState;
+
+    protected override void EntityAwake()
+    {
+        base.EntityAwake();
+
+    }
 
     protected override void EntityStart()
     {
@@ -95,6 +107,27 @@ public class ConstructionTankController : TankController
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
+                int x = (int)transform.position.x;
+                int y = (int)transform.position.y;
+
+                if (ConstructionController.Instance.stuffMatrix[x, y] == -1)
+                {
+                    _currentStuff = null;
+                    state = ConstructionTankState.None;
+                }
+                else if (ConstructionController.Instance.stuffMatrix[(int)transform.position.x, (int)transform.position.y] != -1)
+                {
+                    state = ConstructionTankState.OnStuff;
+                    foreach(ConstructionStuff cons in ConstructionController.Instance.stuffs)
+                    {
+                        if(cons.transform.position.x == x && cons.transform.position.y == y)
+                        {
+                            _currentStuff = cons;
+                            break;
+                        }
+                    }
+                }
+
                 if ((_currentStuff != null && _currentStuff.StuffIndex == _currentStuffIndex)
                     || (_currentStuff == null && _currentStuffIndex == -1))
                     _currentStuffIndex++;
@@ -105,22 +138,12 @@ public class ConstructionTankController : TankController
                 }
 
                 if (constructionData.ApplyStuff(_currentStuffIndex, transform.position, state == ConstructionTankState.OnStuff, _currentStuff) != null)
+                {
                     state = ConstructionTankState.OnStuff;
-                ;
+                    stuffState = StuffState.Spawned;
+                }
 
             }
-        }
-
-        raycastHit = Physics2D.CircleCast(transform.position, .05f, transform.forward, .05f);
-        if (raycastHit.collider == null)
-        {
-            _currentStuff = null;
-            state = ConstructionTankState.None;
-        }
-        else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Stuff"))
-        {
-            state = ConstructionTankState.OnStuff;
-            _currentStuff = raycastHit.collider.gameObject.GetComponent<ConstructionStuff>();
-        }
+        }        
     }
 }

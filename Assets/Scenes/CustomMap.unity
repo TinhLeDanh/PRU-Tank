@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 548421735}
   - component: {fileID: 548421737}
   m_Layer: 0
-  m_Name: GameInstance
+  m_Name: ConstructionController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,8 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 16
   height: 8
-  baseStuff: {fileID: 0}
-  stuffs: {fileID: 11400000, guid: ce47029d7b0bff94b9b4b596ad1e49ce, type: 2}
+  spawnPos: {x: 6, y: 0}
+  stuffsSO: {fileID: 11400000, guid: ce47029d7b0bff94b9b4b596ad1e49ce, type: 2}
+  stuffs: []
 --- !u!4 &548421736
 Transform:
   m_ObjectHideFlags: 0

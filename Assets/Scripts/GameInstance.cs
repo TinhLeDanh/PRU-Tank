@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class GameInstance : MonoBehaviour
 {
+    public static GameInstance instance;
+
     public MapGenerator mapGenerator;
 
     public PlayerCharacterEntity tank;
@@ -15,6 +17,9 @@ public class GameInstance : MonoBehaviour
 
     private void Awake()
     {
+        if(instance == null)
+            instance = this;
+
         constructionController = GetComponent<ConstructionController>();
        
     }

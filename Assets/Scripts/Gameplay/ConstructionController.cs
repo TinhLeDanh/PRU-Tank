@@ -11,7 +11,10 @@ public class ConstructionController : MonoBehaviour
     public int height;
     public Vector2 spawnPos;
     public int[,] stuffMatrix;
-    public ConstructionStuffListSO stuffs;
+    public ConstructionStuffListSO stuffsSO;
+
+    public List<ConstructionStuff> stuffs;
+    private int stuffCounter;
 
     private ChangeJson saveSystem;
 
@@ -22,6 +25,7 @@ public class ConstructionController : MonoBehaviour
 
         stuffMatrix = new int[width, height];
         saveSystem = GetComponent<ChangeJson>();
+        stuffCounter = 0;
     }
 
     private void Start()
@@ -74,8 +78,10 @@ public class ConstructionController : MonoBehaviour
         for (int i = 0; i < stuffMatrix.GetLength(0); i++)
             for (int j = 0; j < stuffMatrix.GetLength(1); j++)
             {
-                if (stuffMatrix[i, j] != -1 && (i != spawnPos.x && j != spawnPos.y))
-                    Instantiate(stuffs.stuffList[stuffMatrix[i, j]], new Vector2(i, j), Quaternion.identity);
+                if (i == spawnPos.x && j == spawnPos.y)
+                    stuffMatrix[i, j] = -1;
+                if (stuffMatrix[i, j] != -1)
+                    Instantiate(stuffsSO.stuffList[stuffMatrix[i, j]], new Vector2(i, j), Quaternion.identity);
             }
 
         return true;
@@ -92,19 +98,20 @@ public class ConstructionController : MonoBehaviour
         stuffMatrix[width / 2 - 1, 1] = 14;
         stuffMatrix[width / 2 + 1, 1] = 13;
 
-        Instantiate(stuffs.stuffList[12], new Vector2(width / 2, 0), Quaternion.identity);
-        Instantiate(stuffs.stuffList[13], new Vector2(width / 2 + 1, 1), Quaternion.identity);
-        Instantiate(stuffs.stuffList[14], new Vector2(width / 2 - 1, 1), Quaternion.identity);
-        Instantiate(stuffs.stuffList[0], new Vector2(width / 2 + 1, 0), Quaternion.identity);
-        Instantiate(stuffs.stuffList[1], new Vector2(width / 2, 1), Quaternion.identity);
-        Instantiate(stuffs.stuffList[2], new Vector2(width / 2 - 1, 0), Quaternion.identity);
+        stuffs.Add(Instantiate(stuffsSO.stuffList[12], new Vector2(width / 2, 0), Quaternion.identity));
+        stuffs.Add(Instantiate(stuffsSO.stuffList[13], new Vector2(width / 2 + 1, 1), Quaternion.identity));
+        stuffs.Add(Instantiate(stuffsSO.stuffList[14], new Vector2(width / 2 - 1, 1), Quaternion.identity));
+        stuffs.Add(Instantiate(stuffsSO.stuffList[0], new Vector2(width / 2 + 1, 0), Quaternion.identity));
+        stuffs.Add(Instantiate(stuffsSO.stuffList[1], new Vector2(width / 2, 1), Quaternion.identity));
+        stuffs.Add(Instantiate(stuffsSO.stuffList[2], new Vector2(width / 2 - 1, 0), Quaternion.identity));
 
     }
 
-    public void ApplyStuffToMatrix(int x, int y, int id)
+    public void ApplyStuffToMatrix(int x, int y, int id, ConstructionStuff stuff)
     {
         stuffMatrix[x, y] = id;
+        stuff.ID = stuffCounter;
+        stuffs.Add(stuff);
+        stuffCounter++;
     }
-
-
 }
