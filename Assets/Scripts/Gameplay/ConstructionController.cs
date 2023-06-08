@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ConstructionController : MonoBehaviour
 {
@@ -40,6 +41,11 @@ public class ConstructionController : MonoBehaviour
         {
             ConstructionMapData mapObject = saveSystem.GetObjectByJson<ConstructionMapData>("t4");
             LoadMap(mapObject);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadSceneAsync("Menu"); 
         }
     }
 
