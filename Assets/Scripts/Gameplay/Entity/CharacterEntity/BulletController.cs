@@ -59,4 +59,16 @@ public class BulletController : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "steel")
+        {
+            Destroy(gameObject);
+        }else if (collision.gameObject.tag == "brick")
+        {
+            Destroy(gameObject);
+        }
+            
+    }
 }
