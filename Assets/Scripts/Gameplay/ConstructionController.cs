@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ConstructionController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ConstructionController : MonoBehaviour
     public int width;
     public int height;
     public int[,] stuffMatrix;
+    public ConstructionStuff baseStuff;
     public ConstructionStuffListSO stuffs;
 
     private ChangeJson saveSystem;
@@ -31,7 +33,7 @@ public class ConstructionController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ConstructionMapData mapObject = new ConstructionMapData("map", stuffMatrix);
+            ConstructionMapData mapObject = new ConstructionMapData("map custom", stuffMatrix);
             saveSystem.AddObjectByJson("t4", mapObject);
         }
 
@@ -40,11 +42,17 @@ public class ConstructionController : MonoBehaviour
             ConstructionMapData mapObject = saveSystem.GetObjectByJson<ConstructionMapData>("t4");
             LoadMap(mapObject);
         }
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadSceneAsync("Menu"); 
+        }
     }
 
     private void InitMatrix()
     {
-        ResetMatrix(-1);
+        //ResetMatrix(-1);
+        CreateBase();
     }
 
     private void ResetMatrix(int value)
@@ -69,6 +77,26 @@ public class ConstructionController : MonoBehaviour
             }
 
         }
+    }
+
+    private void CreateBase()
+    {
+        ResetMatrix(-1);
+
+        stuffMatrix[width / 2, 0] = 12;
+        stuffMatrix[width / 2 - 1, 0] = 2;
+        stuffMatrix[width / 2 + 1, 0] = 0;
+        stuffMatrix[width / 2, 1] = 1;
+        stuffMatrix[width / 2 - 1, 1] = 14;
+        stuffMatrix[width / 2 + 1, 1] = 13;
+
+        Instantiate(stuffs.stuffList[12], new Vector2(width / 2, 0), Quaternion.identity);
+        Instantiate(stuffs.stuffList[13], new Vector2(width / 2 + 1, 1), Quaternion.identity);
+        Instantiate(stuffs.stuffList[14], new Vector2(width / 2 - 1, 1), Quaternion.identity);
+        Instantiate(stuffs.stuffList[0], new Vector2(width / 2 + 1, 0), Quaternion.identity);
+        Instantiate(stuffs.stuffList[1], new Vector2(width / 2, 1), Quaternion.identity);
+        Instantiate(stuffs.stuffList[2], new Vector2(width / 2 - 1, 0), Quaternion.identity);
+
     }
 
     public void ApplyStuffToMatrix(int x, int y, int id)

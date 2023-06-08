@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class MenuChooseMapController : MonoBehaviour
 {
     public GameObject canvas;
-    
+
     public AudioSource beep_switch;
 
     public GameObject pointer;
@@ -17,11 +18,23 @@ public class MenuChooseMapController : MonoBehaviour
 
     private int choose = 0;
 
-    private int countMap = 5;
-    public TMP_FontAsset  font;
-    // Start is called before the first frame update
-    private float x = -21.6f, y= 120f, z = 0f;
-    void Start()
+    private ChangeJson saveSystem;
+
+    private int countMap = 2;
+
+    private List<string> lst = new List<string>(); 
+
+    public TMP_FontAsset font;
+
+    private float x = -21.6f, y = 120f, z = 0f;
+
+    void Awake()
+    {
+        lst.Add("map custom");
+        lst.Add("map default");
+    }
+
+void Start()
     {
         RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
         for (int i = 0; i < countMap; i++)
@@ -32,7 +45,7 @@ public class MenuChooseMapController : MonoBehaviour
             textMesh.fontSize = 24;
             textMesh.font = font;
             textMesh.color = Color.white;
-            textMesh.text = "map default " + i ;
+            textMesh.text = lst[i];
             textObject.transform.SetParent(canvasRectTransform, false);
         }
 
@@ -51,6 +64,10 @@ public class MenuChooseMapController : MonoBehaviour
             Debug.Log(choose);
             beep_switch.Play(0);
             UpdateUI();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadSceneAsync("Menu"); 
         }
     }
     
