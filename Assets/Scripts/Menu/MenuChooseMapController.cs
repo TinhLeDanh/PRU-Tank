@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class MenuChooseMapController : MonoBehaviour
 {
     public GameObject canvas;
-    
+
     public AudioSource beep_switch;
 
     public GameObject pointer;
@@ -17,21 +17,26 @@ public class MenuChooseMapController : MonoBehaviour
     private GameObject instancePointer;
 
     private int choose = 0;
-    
+
     private ChangeJson saveSystem;
 
-    private int countMap = 0;
-    
-    public TMP_FontAsset  font;
-    
-    private float x = -21.6f, y= 120f, z = 0f;
-    
-    void Start()
+    private int countMap = 2;
+
+    private List<string> lst = new List<string>(); 
+
+    public TMP_FontAsset font;
+
+    private float x = -21.6f, y = 120f, z = 0f;
+
+    void Awake()
     {
-         saveSystem = GetComponent<ChangeJson>();
-         List<string> lst = saveSystem.GetAllKeyMap();
-         countMap = lst.Count;
-         RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
+        lst.Add("map custom");
+        lst.Add("map default");
+    }
+
+void Start()
+    {
+        RectTransform canvasRectTransform = canvas.GetComponent<RectTransform>();
         for (int i = 0; i < countMap; i++)
         {
             GameObject textObject = new GameObject("Text Object");
@@ -40,7 +45,7 @@ public class MenuChooseMapController : MonoBehaviour
             textMesh.fontSize = 24;
             textMesh.font = font;
             textMesh.color = Color.white;
-            textMesh.text = "map default " + i ;
+            textMesh.text = lst[i];
             textObject.transform.SetParent(canvasRectTransform, false);
         }
 

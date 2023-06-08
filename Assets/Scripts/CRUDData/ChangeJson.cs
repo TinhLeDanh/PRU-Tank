@@ -88,7 +88,7 @@ public class ChangeJson : MonoBehaviour
         }
     }
 
-    public List<string> GetAllKeyMap()
+    public static List<string> GetAllKeyMap()
     {
         try
         {
