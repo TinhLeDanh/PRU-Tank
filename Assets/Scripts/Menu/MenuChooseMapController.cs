@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class MenuChooseMapController : MonoBehaviour
@@ -51,6 +52,10 @@ public class MenuChooseMapController : MonoBehaviour
             Debug.Log(choose);
             beep_switch.Play(0);
             UpdateUI();
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadSceneAsync("Menu"); 
         }
     }
     
