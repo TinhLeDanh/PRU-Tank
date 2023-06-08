@@ -3,6 +3,7 @@ using Entity;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TankController : PlayerCharacterEntity
 {
@@ -72,6 +73,11 @@ public class TankController : PlayerCharacterEntity
         if (Input.GetKey(KeyCode.Space))
         {
             Fire();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadSceneAsync("Menu");
         }
     }
 

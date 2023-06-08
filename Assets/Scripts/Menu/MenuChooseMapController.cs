@@ -69,6 +69,10 @@ void Start()
         {
             SceneManager.LoadSceneAsync("Menu"); 
         }
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            LoadScenes();
+        }
     }
     
     void UpdateUI()
@@ -85,5 +89,18 @@ void Start()
 
         }
         
+    }
+    
+    void LoadScenes()
+    {
+        switch (choose)
+        {
+            case 0:
+                SceneManager.LoadSceneAsync("Gameplay");
+                break;
+            case 1:
+                break;
+
+        }
     }
 }

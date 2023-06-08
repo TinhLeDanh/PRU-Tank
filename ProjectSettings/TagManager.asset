@@ -10,6 +10,8 @@ TagManager:
   - choose1
   - choose2
   - choose3
+  - steel
+  - brick
   layers:
   - Default
   - TransparentFX
