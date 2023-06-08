@@ -16,6 +16,9 @@ public class ConstructionTankSO : Tank
 
         }
 
+        if (order == -1)
+            return null;
+
         GameObject go = Instantiate(stuffs.stuffList[order].gameObject, position + stuffs.stuffList[order].offset, Quaternion.identity);
         ConstructionStuff constructionStuff = go.GetComponent<ConstructionStuff>();
         constructionStuff.StuffIndex = order;

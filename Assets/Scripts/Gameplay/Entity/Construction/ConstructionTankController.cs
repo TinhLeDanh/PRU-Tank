@@ -17,7 +17,7 @@ public class ConstructionTankController : TankController
     private int maxX;
     private int maxY;
     private ConstructionStuff _currentStuff;
-    private int _currentStuffIndex;
+    public int _currentStuffIndex;
     private ConstructionTankSO constructionData;
     private RaycastHit2D raycastHit;
 
@@ -95,18 +95,19 @@ public class ConstructionTankController : TankController
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                _currentStuffIndex++;
-                if (_currentStuffIndex >= constructionData.stuffs.stuffList.Count)
+                if ((_currentStuff != null && _currentStuff.StuffIndex == _currentStuffIndex)
+                    || (_currentStuff == null && _currentStuffIndex == -1))
+                    _currentStuffIndex++;
+
+                if (_currentStuffIndex >= constructionData.stuffs.maxStuffPlayerCanUse)
                 {
-                    _currentStuffIndex = 0;
+                    _currentStuffIndex = -1;
                 }
 
-                //Debug.Log(_currentStuffIndex);
+                if (constructionData.ApplyStuff(_currentStuffIndex, transform.position, state == ConstructionTankState.OnStuff, _currentStuff) != null)
+                    state = ConstructionTankState.OnStuff;
+                ;
 
-                constructionData.ApplyStuff(_currentStuffIndex,
-                    transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
-
-                state = ConstructionTankState.OnStuff;
             }
         }
 
@@ -115,13 +116,13 @@ public class ConstructionTankController : TankController
         {
             _currentStuff = null;
             state = ConstructionTankState.None;
-            _currentStuffIndex = -1;
+            //_currentStuffIndex = -1;
         }
         else if (raycastHit.collider.gameObject.layer == LayerMask.NameToLayer("Stuff"))
         {
             state = ConstructionTankState.OnStuff;
             _currentStuff = raycastHit.collider.gameObject.GetComponent<ConstructionStuff>();
-            _currentStuffIndex = _currentStuff.StuffIndex;
+            //_currentStuffIndex = _currentStuff.StuffIndex;
         }
     }
 }
