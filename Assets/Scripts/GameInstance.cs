@@ -61,6 +61,6 @@ public class GameInstance : MonoBehaviour
 
     private void SpawnPlayer()
     {
-
+        Instantiate(tank, constructionController.spawnPos, Quaternion.identity);
     }
 }

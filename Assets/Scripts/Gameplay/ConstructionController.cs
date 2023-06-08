@@ -55,7 +55,8 @@ public class ConstructionController : MonoBehaviour
     private void InitMatrix()
     {
         //ResetMatrix(-1);
-        CreateBase();
+        if (GameInstance.instance == null)
+            CreateBase();
     }
 
     private void ResetMatrix(int value)
