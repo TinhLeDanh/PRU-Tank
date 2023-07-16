@@ -10,7 +10,7 @@ public class GameInstance : MonoBehaviour
     public MapGenerator mapGenerator;
 
     public PlayerCharacterEntity tank;
-    public EnemyCharacterEntity enemy;
+    //public EnemyCharacterEntity enemy;
 
     private ConstructionController constructionController;
     private int[,] stuffMatrix;
@@ -51,12 +51,12 @@ public class GameInstance : MonoBehaviour
         Vector2 spawnPos = mapGenerator.floorPosition[rand];
 
         Instantiate(tank, spawnPos, Quaternion.identity);
-        Instantiate(enemy, spawnPos, Quaternion.identity);
+        //Instantiate(enemy, spawnPos, Quaternion.identity);
     }
 
     private void SpawnEnemy()
     {
-        Instantiate(enemy, Vector2.zero , Quaternion.identity);
+        //Instantiate(enemy, Vector2.zero , Quaternion.identity);
     }
 
     private void SpawnPlayer()

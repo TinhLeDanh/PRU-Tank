@@ -191,31 +191,6 @@ public class ConstructionTankController : TankController
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                _currentStuffIndex++;
-                if (_currentStuffIndex >= constructionData.stuffs.stuffList.Count)
-                {
-                    _currentStuff = null;
-                    state = ConstructionTankState.None;
-                }
-                else if (ConstructionController.Instance.stuffMatrix[(int)transform.position.x, (int)transform.position.y] != -1)
-                {
-                    state = ConstructionTankState.OnStuff;
-                    foreach (ConstructionStuff cons in ConstructionController.Instance.stuffs)
-                    {
-                        if (cons.transform.position.x == x && cons.transform.position.y == y)
-                        {
-                            _currentStuff = cons;
-                            break;
-                        }
-                    }
-                }
-
-                if ((_currentStuff != null && _currentStuff.StuffIndex == _currentStuffIndex)
-                    || (_currentStuff == null && _currentStuffIndex == -1))
-                    _currentStuffIndex++;
-
-                constructionData.ApplyStuff(_currentStuffIndex,
-                    transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
                 int x = (int)transform.position.x;
                 int y = (int)transform.position.y;
 
