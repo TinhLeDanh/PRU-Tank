@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1104279190621613927}
   - component: {fileID: 1445588235494078850}
   - component: {fileID: 1264579893}
-  - component: {fileID: 1264579894}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -104,7 +103,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -146,4 +145,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61ee2dbf02124f4391a7a876ca6bcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tankBot: {fileID: 0}

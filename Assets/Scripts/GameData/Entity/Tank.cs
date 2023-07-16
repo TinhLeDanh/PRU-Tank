@@ -6,6 +6,7 @@ using UnityEngine;
 public class Tank : BaseEntityData
 {
     public string tankName;
+    public int damage;
     public int health;
     public float speed;
 }

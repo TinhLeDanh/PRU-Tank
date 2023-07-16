@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -966776765
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 587fe822b2c93480d81350bd39aceb22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -966776765
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 587fe822b2c93480d81350bd39aceb22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -966776765
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 587fe822b2c93480d81350bd39aceb22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 9038779106118166901}
   m_Layer: 8
   m_Name: Brick_1x1_BL
-  m_TagString: brick
+  m_TagString: stuff
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c3966b2cf5ca39429b8bf2b4ffef731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: d17c5b697576d074e95a1b4142f7b53d, type: 2}
+  data: {fileID: 11400000, guid: c4d092e2503ad4542953d04d3926ef51, type: 2}
 --- !u!61 &9038779106118166901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -966776765
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 587fe822b2c93480d81350bd39aceb22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

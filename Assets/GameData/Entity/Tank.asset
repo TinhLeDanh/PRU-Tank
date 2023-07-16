@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23933dc4fb9cd044083e88cc01befbaf, type: 3}
   m_Name: Tank
   m_EditorClassIdentifier: 
-  tankName: 
-  health: 0
+  tankName: Yellow
+  damage: 20
+  health: 200
   speed: 5

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aefe75553a73bb04eac4443c7caa1888, type: 3}
   m_Name: List
   m_EditorClassIdentifier: 
-  maxStuffPlayerCanUse: 12
+  maxStuffPlayerCanUse: 16
   stuffList:
   - {fileID: 1532699732734015746, guid: 7d0c2b240907fb44cbb5423f849be6bf, type: 3}
   - {fileID: 7903650588291477381, guid: d9703df449dc39141b997a3b9db1c14c, type: 3}
@@ -29,7 +29,4 @@ MonoBehaviour:
   - {fileID: 1501762730438339025, guid: 64c2bac8105ba7440968f21f4fdd2618, type: 3}
   - {fileID: 7677253079682059469, guid: c862b5db1be99c845a813ca50efc17ca, type: 3}
   - {fileID: 8609791229364978367, guid: f2eae9508ecd2fd43ae782da53ae52e2, type: 3}
-  specialStuffList:
-  - {fileID: 1501762730438339025, guid: 64c2bac8105ba7440968f21f4fdd2618, type: 3}
-  - {fileID: 7677253079682059469, guid: c862b5db1be99c845a813ca50efc17ca, type: 3}
-  - {fileID: 8609791229364978367, guid: f2eae9508ecd2fd43ae782da53ae52e2, type: 3}
+  - {fileID: 492162056110847868, guid: f08f3caa97f769543a41a5b9d7c77c5b, type: 3}

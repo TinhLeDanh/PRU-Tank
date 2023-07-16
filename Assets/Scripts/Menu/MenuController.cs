@@ -27,8 +27,8 @@ public class MenuController : MonoBehaviour
         {
             choose++;
             choose= choose % 3;
-            Debug.Log(choose);
-            Debug.Log(firstRender);
+            //Debug.Log(choose);
+            //Debug.Log(firstRender);
             if (!firstRender)
             {
                 beep_switch.Play(0);

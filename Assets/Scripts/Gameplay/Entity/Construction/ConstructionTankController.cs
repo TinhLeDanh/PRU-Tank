@@ -191,10 +191,8 @@ public class ConstructionTankController : TankController
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
-                int x = (int)transform.position.x;
-                int y = (int)transform.position.y;
-
-                if (ConstructionController.Instance.stuffMatrix[x, y] == -1)
+                _currentStuffIndex++;
+                if (_currentStuffIndex >= constructionData.stuffs.stuffList.Count)
                 {
                     _currentStuff = null;
                     state = ConstructionTankState.None;
@@ -216,7 +214,51 @@ public class ConstructionTankController : TankController
                     || (_currentStuff == null && _currentStuffIndex == -1))
                     _currentStuffIndex++;
 
-                if (_currentStuffIndex >= constructionData.stuffs.maxStuffPlayerCanUse)
+                constructionData.ApplyStuff(_currentStuffIndex,
+                    transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
+                int x = (int)transform.position.x;
+                int y = (int)transform.position.y;
+
+                //if tank is on -1 on matrix value
+                if (ConstructionController.Instance.stuffMatrix[x, y] == -1)
+                {
+                    _currentStuff = null;
+                    state = ConstructionTankState.None;
+                }
+                //if on another stuff
+                else
+                {
+                    state = ConstructionTankState.OnStuff;
+                    foreach (ConstructionStuff cons in ConstructionController.Instance.stuffs)
+                    {
+                        if (cons.transform.position.x == x && cons.transform.position.y == y)
+                        {
+                            _currentStuff = cons;
+                            break;
+                        }
+                    }
+                }
+
+
+                if ((_currentStuff != null && _currentStuff.StuffIndex == _currentStuffIndex)
+                    || (_currentStuff == null && _currentStuffIndex == -1))
+                {
+                    _currentStuffIndex++;
+                    while (_currentStuffIndex < constructionData.stuffs.stuffList.Count - 1 &&
+                        !ConstructionController.Instance.stuffsSO.stuffList[_currentStuffIndex].data.canBuild)
+                    {
+                        _currentStuffIndex++;
+                        if (_currentStuffIndex > constructionData.stuffs.stuffList.Count - 1)
+                        {
+                            _currentStuffIndex = -1;
+                            break;
+                        }
+                    }
+
+                }
+
+
+                if (_currentStuffIndex > constructionData.stuffs.stuffList.Count - 1)
                 {
                     _currentStuffIndex = -1;
                 }
@@ -226,7 +268,6 @@ public class ConstructionTankController : TankController
                     state = ConstructionTankState.OnStuff;
                     stuffState = StuffState.Spawned;
                 }
-
             }
         }
     }
