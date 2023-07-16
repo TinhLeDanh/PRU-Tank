@@ -95,6 +95,7 @@ public class ConstructionTankController : TankController
         {
             if (Input.GetKeyDown(KeyCode.X))
             {
+<<<<<<< Updated upstream
                 _currentStuffIndex++;
                 if (_currentStuffIndex >= constructionData.stuffs.stuffList.Count)
                 {
@@ -105,6 +106,60 @@ public class ConstructionTankController : TankController
 
                 constructionData.ApplyStuff(_currentStuffIndex,
                     transform.position, state == ConstructionTankState.OnStuff, _currentStuff);
+=======
+                int x = (int)transform.position.x;
+                int y = (int)transform.position.y;
+
+                //if tank is on -1 on matrix value
+                if (ConstructionController.Instance.stuffMatrix[x, y] == -1)
+                {
+                    _currentStuff = null;
+                    state = ConstructionTankState.None;
+                }
+                //if on another stuff
+                else
+                {
+                    state = ConstructionTankState.OnStuff;
+                    foreach (ConstructionStuff cons in ConstructionController.Instance.stuffs)
+                    {
+                        if (cons.transform.position.x == x && cons.transform.position.y == y)
+                        {
+                            _currentStuff = cons;
+                            break;
+                        }
+                    }
+                }
+
+
+                if ((_currentStuff != null && _currentStuff.StuffIndex == _currentStuffIndex)
+                    || (_currentStuff == null && _currentStuffIndex == -1))
+                {
+                    _currentStuffIndex++;
+                    while (_currentStuffIndex < constructionData.stuffs.stuffList.Count - 1 &&
+                        !ConstructionController.Instance.stuffsSO.stuffList[_currentStuffIndex].data.canBuild)
+                    {
+                        _currentStuffIndex++;
+                        if (_currentStuffIndex > constructionData.stuffs.stuffList.Count - 1)
+                        {
+                            _currentStuffIndex = -1;
+                            break;
+                        }
+                    }
+
+                }
+
+
+                if (_currentStuffIndex > constructionData.stuffs.stuffList.Count - 1)
+                {
+                    _currentStuffIndex = -1;
+                }
+
+                if (constructionData.ApplyStuff(_currentStuffIndex, transform.position, state == ConstructionTankState.OnStuff, _currentStuff) != null)
+                {
+                    state = ConstructionTankState.OnStuff;
+                    stuffState = StuffState.Spawned;
+                }
+>>>>>>> Stashed changes
 
                 state = ConstructionTankState.OnStuff;
             }

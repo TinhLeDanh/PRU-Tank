@@ -59,4 +59,16 @@ public class BulletController : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "stuff")
+    //    {
+    //        Destroy(gameObject);
+    //    }
+            
+    //}
+>>>>>>> Stashed changes
 }

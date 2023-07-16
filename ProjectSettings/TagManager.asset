@@ -4,9 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - bullet
+<<<<<<< Updated upstream
   - bulletEnemy
+=======
+  - choose3
+  - choose2
+  - choose1
+  - Enemy
+  - bulletEnemy
+  - stuff
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -14,10 +22,13 @@ TagManager:
   - 
   - Water
   - UI
+<<<<<<< Updated upstream
   - Player
   - Enemy
   - Stuff
   - 
+=======
+>>>>>>> Stashed changes
   - 
   - 
   - 
@@ -31,6 +42,10 @@ TagManager:
   - 
   - 
   - 
+  - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
   - 
   - 
   - 
@@ -44,9 +59,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 4062309619
+  - name: Layer 1
+    uniqueID: 2425651459
     locked: 0
-  - name: Entity
-    uniqueID: 3328190531
+  - name: Layer 2
+    uniqueID: 4250941897
+    locked: 0
+  - name: Layer 3
+    uniqueID: 4189426099
     locked: 0
