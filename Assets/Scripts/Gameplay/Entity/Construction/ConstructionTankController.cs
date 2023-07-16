@@ -78,6 +78,17 @@ public class ConstructionTankController : TankController
     {
         Direction dir = Direction.None;
 
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (delayBtnLeft)
+            {
+                StartCoroutine(DelayBtnLeft());
+                if (transform.position.x <= 0)
+                    return;
+
+                dir = Direction.Left;
+            }
+        }
         else
         {
             if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && delayBtnLeft)
