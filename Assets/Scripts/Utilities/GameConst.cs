@@ -24,7 +24,7 @@ public class GameConst
     public const string GameData_MenuName = "GameData/GameGeneralData";
     public const int GameData_Order = -9994;
     
-    public const string X2Bullet_FileName = "X2Bullet";
+    public const string X2Bullet_FileName = "X2 Bullet";
     public const string X2Bullet_MenuName = "GameData/Item/X2 Bullet";
     public const int X2Bullet_Order = -9993;
 }
