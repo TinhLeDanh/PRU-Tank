@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuChooseMap.unity
     guid: 4125d4405c567465ba5f62b7afab361c
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 0e30a4d1bb3c0514f9b545db11d86a83
   m_configObjects: {}
