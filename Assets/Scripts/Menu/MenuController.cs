@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class MenuController : MonoBehaviour
 {
-    private GameObject choose1, choose2, choose3;
+    private GameObject choose1, choose2, choose3, choose4;
     private int choose = 0;
     public AudioSource beep_switch;
     private bool firstRender = true;
@@ -17,6 +17,7 @@ public class MenuController : MonoBehaviour
         choose1 = GameObject.FindGameObjectWithTag("choose1");
         choose2 = GameObject.FindGameObjectWithTag("choose2");
         choose3 = GameObject.FindGameObjectWithTag("choose3");
+        choose4 = GameObject.FindGameObjectWithTag("choose4");
         UpdateUI();
     }
 
@@ -26,7 +27,7 @@ public class MenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift))
         {
             choose++;
-            choose= choose % 3;
+            choose= choose % 4;
             //Debug.Log(choose);
             //Debug.Log(firstRender);
             if (!firstRender)
@@ -49,16 +50,25 @@ public class MenuController : MonoBehaviour
                choose1.SetActive(true);
                choose2.SetActive(false);
                choose3.SetActive(false);
+               choose4.SetActive(false);
                break;
            case 1:
                choose1.SetActive(false);
                choose2.SetActive(true);
                choose3.SetActive(false);
+               choose4.SetActive(false);
                break;
            case 2:
                choose1.SetActive(false);
                choose2.SetActive(false);
                choose3.SetActive(true);
+               choose4.SetActive(false);
+               break;
+           case 3:
+               choose1.SetActive(false);
+               choose2.SetActive(false);
+               choose3.SetActive(false);
+               choose4.SetActive(true);
                break;
                
         }
@@ -75,6 +85,9 @@ public class MenuController : MonoBehaviour
                 break;
             case 2: 
                 SceneManager.LoadSceneAsync("CustomMap");
+                break;
+            case 3: 
+                SceneManager.LoadSceneAsync("Tutorial");
                 break;
                
         }

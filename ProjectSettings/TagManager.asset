@@ -10,6 +10,10 @@ TagManager:
   - Enemy
   - bulletEnemy
   - stuff
+  - brick
+  - steel
+  - choose3
+  - choose4
   layers:
   - Default
   - TransparentFX
