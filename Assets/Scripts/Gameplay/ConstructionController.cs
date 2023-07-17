@@ -1,3 +1,4 @@
+using Entity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,12 @@ public class ConstructionController : MonoBehaviour
     public int width;
     public int height;
     public Vector2 spawnPos;
+    public List<Vector2> spawnEnemyList;
     public int[,] stuffMatrix;
     public ConstructionStuffListSO stuffsSO;
+
+    [HideInInspector]
+    public Vector2 basePos;
 
     public List<ConstructionStuff> stuffs;
     private int stuffCounter;
@@ -79,8 +84,19 @@ public class ConstructionController : MonoBehaviour
         for (int i = 0; i < stuffMatrix.GetLength(0); i++)
             for (int j = 0; j < stuffMatrix.GetLength(1); j++)
             {
+                foreach(Vector2 pos in spawnEnemyList)
+                {
+                    if(i == pos.x && j == pos.y)
+                    {
+                        stuffMatrix[i, j] = -1;
+                        Instantiate(GameInstance.instance.enemy, pos, Quaternion.identity);
+                        Debug.Log(1);
+                    }
+                }
+
                 if (i == spawnPos.x && j == spawnPos.y)
                     stuffMatrix[i, j] = -1;
+
                 if (stuffMatrix[i, j] != -1)
                     Instantiate(stuffsSO.stuffList[stuffMatrix[i, j]], new Vector2(i, j), Quaternion.identity);
             }
@@ -106,6 +122,8 @@ public class ConstructionController : MonoBehaviour
         stuffs.Add(Instantiate(stuffsSO.stuffList[1], new Vector2(width / 2, 1), Quaternion.identity));
         stuffs.Add(Instantiate(stuffsSO.stuffList[2], new Vector2(width / 2 - 1, 0), Quaternion.identity));
 
+        basePos.x = width / 2;
+        basePos.y = 0;
     }
 
     public void ApplyStuffToMatrix(int x, int y, int id, ConstructionStuff stuff)

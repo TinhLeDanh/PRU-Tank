@@ -16,3 +16,5 @@ MonoBehaviour:
   damage: 20
   health: 200
   speed: 5
+  atkSpeed: 0.5
+  bulletPerShot: 1

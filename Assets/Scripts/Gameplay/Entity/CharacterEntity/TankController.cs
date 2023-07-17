@@ -21,9 +21,15 @@ public class TankController : PlayerCharacterEntity
     private SpriteRenderer _renderer;
     public new GameObject camera;
 
+    private int maxX;
+    private int maxY;
+
     protected override void EntityStart()
     {
         base.EntityStart();
+
+        maxX = ConstructionController.Instance.width;
+        maxY = ConstructionController.Instance.height;
 
         _tank = new Entity.Tank
         {
@@ -55,18 +61,26 @@ public class TankController : PlayerCharacterEntity
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
+            if (transform.position.x <= 0)
+                return;
             Move(Direction.Left);
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
+            if (transform.position.y <= 0)
+                return;
             Move(Direction.Down);
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
+            if (transform.position.x >= maxX)
+                return;
             Move(Direction.Right);
         }
         else if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
+            if (transform.position.y >= maxY)
+                return;
             Move(Direction.Up);
         }
 

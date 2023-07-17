@@ -7,6 +7,19 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public Bullet Bullet { get; set; }
+    public CharacterEntity caster;
+
+    public int Damage
+    {
+        get
+        {
+            if(caster.data is Tank tank)
+            {
+                return tank.damage;
+            }
+            else return 0;
+        }
+    }
 
     public int MaxRange { get; set; }
 

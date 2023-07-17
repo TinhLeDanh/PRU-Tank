@@ -15,4 +15,6 @@ MonoBehaviour:
   canBuild: 1
   canBreak: 1
   canWalkThrough: 0
+  canShoot: 1
   lifeCount: 2
+  items: []

@@ -15,6 +15,10 @@ MonoBehaviour:
   canBuild: 1
   canBreak: 1
   canWalkThrough: 0
-  lifeCount: 5
+  canShoot: 1
+  lifeCount: 1
   items:
   - {fileID: -7937114785056030549, guid: b541ee81726d3244ba84213c8b575652, type: 3}
+  - {fileID: -7937114785056030549, guid: fe1b0fd7b725f964eab10c5f9cf42249, type: 3}
+  - {fileID: -7937114785056030549, guid: 441e8d18e1e177e4db2734a0ae0f020a, type: 3}
+  - {fileID: -7937114785056030549, guid: 4ea5950d87e4bd246b38fdc88659d4a7, type: 3}

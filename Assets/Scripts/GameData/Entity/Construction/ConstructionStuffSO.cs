@@ -19,7 +19,7 @@ public class ConstructionStuffSO : BaseEntityData
         {
             return null;
         }
-        int rand = Random.RandomRange(0, items.Count - 1);
+        int rand = Random.Range(0, items.Count - 1);
         return items[rand];
     }
 }

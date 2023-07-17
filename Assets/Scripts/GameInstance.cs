@@ -10,7 +10,7 @@ public class GameInstance : MonoBehaviour
     public MapGenerator mapGenerator;
 
     public PlayerCharacterEntity tank;
-    //public EnemyCharacterEntity enemy;
+    public EnemyCharacterEntity enemy;
 
     private ConstructionController constructionController;
     private int[,] stuffMatrix;

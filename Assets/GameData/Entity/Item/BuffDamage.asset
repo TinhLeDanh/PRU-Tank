@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: BuffDamage
   m_EditorClassIdentifier: 
   timeApply: 5
-  damage: 10
-  atkSpeed: 0
-  speedByPercent: 0.5
+  damageByPercent: 0.5
+  increaseBullet: 0
+  speedByPercent: 0

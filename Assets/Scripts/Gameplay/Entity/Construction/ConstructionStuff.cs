@@ -10,6 +10,8 @@ public class ConstructionStuff : MonoBehaviour
     private int lifeCounter;
     private BoxCollider2D boxCol;
 
+    public GameObject floatingPoint;
+
     private void Awake()
     {
         boxCol = GetComponent<BoxCollider2D>();
@@ -36,6 +38,13 @@ public class ConstructionStuff : MonoBehaviour
     {
         if (collision.CompareTag("bullet"))
         {
+            GameObject textMeshDamage = Instantiate(floatingPoint, transform.position, Quaternion.identity);
+
+            textMeshDamage.GetComponentInChildren<TextMesh>().text = collision.GetComponent<BulletController>().Damage.ToString();
+            textMeshDamage.transform.parent = transform;
+
+            Destroy(textMeshDamage, 1f);
+
             lifeCounter--;
             if(lifeCounter <= 0 && data.canBreak)
             {

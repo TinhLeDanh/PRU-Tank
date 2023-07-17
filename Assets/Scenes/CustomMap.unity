@@ -292,8 +292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd1b99ba0151b241a1ba34a77235773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 8
+  width: 30
+  height: 16
   spawnPos: {x: 6, y: 0}
   stuffsSO: {fileID: 11400000, guid: ce47029d7b0bff94b9b4b596ad1e49ce, type: 2}
   stuffs: []
@@ -599,7 +599,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -623,7 +623,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660710179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 4, z: -10}
+  m_LocalPosition: {x: 16, y: 8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -678,6 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
+  floatingPoints: {fileID: 0}
 --- !u!114 &1799758439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,6 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
+  floatingPoints: {fileID: 0}
   tankUp: {fileID: 0}
   tankDown: {fileID: 0}
   tankLeft: {fileID: 0}
@@ -793,12 +795,12 @@ PrefabInstance:
     - target: {fileID: 4693325936895465045, guid: 781ac6f21c9b82241b3c3a4d87fd66a6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 4693325936895465045, guid: 781ac6f21c9b82241b3c3a4d87fd66a6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4693325936895465045, guid: 781ac6f21c9b82241b3c3a4d87fd66a6,
         type: 3}
@@ -843,7 +845,7 @@ PrefabInstance:
     - target: {fileID: 5747400480676148929, guid: 781ac6f21c9b82241b3c3a4d87fd66a6,
         type: 3}
       propertyPath: speed
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5879440730193080839, guid: 781ac6f21c9b82241b3c3a4d87fd66a6,
         type: 3}

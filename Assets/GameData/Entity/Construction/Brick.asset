@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1f74b7ea4526347af4ca73a5caffc5, type: 3}
   m_Name: Brick
   m_EditorClassIdentifier: 
+  canBuild: 1
   canBreak: 1
+  canWalkThrough: 0
+  canShoot: 1
   lifeCount: 2
+  items: []

@@ -6,6 +6,8 @@ public class BaseGameEntity : MonoBehaviour
 {
     public BaseEntityData data;
 
+    public GameObject floatingPoints;
+
     protected IGameEntityComponent[] EntityComponents { get; private set; }
 
     private void Awake()

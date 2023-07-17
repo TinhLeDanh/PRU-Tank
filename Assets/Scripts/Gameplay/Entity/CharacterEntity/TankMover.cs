@@ -9,6 +9,7 @@ public class TankMover : BaseGameEntityComponent<BaseGameEntity>
 {
     // Start is called before the first frame update
 
+    [HideInInspector]
     public float speed;
 
     public bool moveByCells;
@@ -28,6 +29,7 @@ public class TankMover : BaseGameEntityComponent<BaseGameEntity>
         var currentPos = gameObject.transform.position;
         if (!moveByCells)
         {
+            speed = this.gameObject.GetComponent<CharacterEntity>().tankData.speed;
             switch (direction)
             {
                 case Direction.Down:

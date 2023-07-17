@@ -434,7 +434,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -458,7 +458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 16, y: 8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapGenerator: {fileID: 1547015990}
   tank: {fileID: 658675346, guid: a77168ab521034ef8b7b80b9dd64708e, type: 3}
-  enemy: {fileID: 1264579894, guid: bb4ea6636980048bbb8428e63190d6b2, type: 3}
+  enemy: {fileID: 1222043776104473341, guid: bb4ea6636980048bbb8428e63190d6b2, type: 3}
 --- !u!4 &1486797628
 Transform:
   m_ObjectHideFlags: 0
@@ -538,9 +538,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccd1b99ba0151b241a1ba34a77235773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 16
-  height: 8
-  spawnPos: {x: 6, y: 0}
+  width: 30
+  height: 16
+  spawnPos: {x: 12, y: 0}
+  spawnEnemyList:
+  - {x: 10, y: 15}
+  - {x: 15, y: 15}
   stuffsSO: {fileID: 11400000, guid: ce47029d7b0bff94b9b4b596ad1e49ce, type: 2}
   stuffs: []
 --- !u!114 &1486797630

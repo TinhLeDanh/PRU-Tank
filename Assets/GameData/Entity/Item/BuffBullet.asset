@@ -10,5 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06453f3d3bb448baa4d295ff8a762d7e, type: 3}
-  m_Name: X2Bullet
+  m_Name: BuffBullet
   m_EditorClassIdentifier: 
+  timeApply: 0
+  damageByPercent: 0
+  increaseBullet: 1
+  speedByPercent: 0

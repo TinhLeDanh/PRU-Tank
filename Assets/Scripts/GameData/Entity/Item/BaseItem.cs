@@ -6,17 +6,18 @@ using UnityEngine;
 public class BaseItem : ScriptableObject
 {
     public float timeApply;
-    public int damage;
+    public float damageByPercent;
     public int increaseBullet;
     public float speedByPercent;
+    public float atkSpeedByPercent;
 
     public void Apply(CharacterEntity target)
     {
         if(target.data is Tank tankData)
         {
-            tankData.damage += damage;
-            //tankData.damage += damage;
-            //tankData.damage += damage;
+            tankData.damage = (int)(tankData.damage + tankData.damage * damageByPercent);
+            tankData.bulletPerShot += increaseBullet;
+            tankData.atkSpeed = tankData.atkSpeed + tankData.atkSpeed * atkSpeedByPercent;
             tankData.speed = tankData.speed + tankData.speed * speedByPercent;
         }
     }

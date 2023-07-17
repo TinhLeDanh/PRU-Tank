@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Entity;
 using UnityEngine;
 
@@ -15,9 +16,14 @@ namespace DefaultNamespace
         public int maxRange;
         public float delay;
         public float lastFire = 0f;
+        public int bulletPerShot;
+
+        private Tank tankData;
 
         private void Start()
         {
+            tankData = GetComponent<CharacterEntity>().tankData;
+            delay = 1 / tankData.atkSpeed;
         }
 
         private void Update()
@@ -32,40 +38,58 @@ namespace DefaultNamespace
                 return;
             }
 
-            var bullet = Instantiate(bulletPrefab, b.InitialPosition, Quaternion.identity);
-            var sr = bullet.GetComponent<SpriteRenderer>();
-            var rigidBody2d = bullet.GetComponent<Rigidbody2D>();
-            var bulletController = bullet.GetComponent<BulletController>();
-            bulletController.Bullet = b;
-            bulletController.MaxRange = maxRange;
-            Vector2 force;
-            switch (b.Direction)
-            {
-                case Direction.Down:
-                    sr.sprite = spriteDown;
-                    force = new Vector2(0, -1 * speed);
-                    break;
-                case Direction.Up:
-                    sr.sprite = spriteUp;
-                    force = new Vector2(0, speed);
+            StartCoroutine(DelayBtwShootCO(b));
 
-                    break;
-                case Direction.Right:
-                    sr.sprite = spriteRight;
-                    force = new Vector2(speed, 0);
-
-                    break;
-                case Direction.Left:
-                    sr.sprite = spriteLeft;
-                    force = new Vector2(-1 * speed, 0);
-
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            rigidBody2d.AddForce(force, ForceMode2D.Impulse);
             lastFire = Time.time;
+        }
+
+        IEnumerator DelayBtwShootCO(Bullet b)
+        {
+            delay = 1 / tankData.atkSpeed;
+            bulletPerShot = tankData.bulletPerShot;
+            int bulletCount = bulletPerShot;
+            float delayBtwShot = .5f;
+            while (bulletCount > 0)
+            {
+                bulletCount--;
+                var bullet = Instantiate(bulletPrefab, b.InitialPosition, Quaternion.identity);
+                var sr = bullet.GetComponent<SpriteRenderer>();
+                var rigidBody2d = bullet.GetComponent<Rigidbody2D>();
+                var bulletController = bullet.GetComponent<BulletController>();
+                bulletController.caster = this.GetComponent<CharacterEntity>();
+                bulletController.Bullet = b;
+                bulletController.MaxRange = maxRange;
+
+                Vector2 force;
+                switch (b.Direction)
+                {
+                    case Direction.Down:
+                        sr.sprite = spriteDown;
+                        force = new Vector2(0, -1 * speed);
+                        break;
+                    case Direction.Up:
+                        sr.sprite = spriteUp;
+                        force = new Vector2(0, speed);
+
+                        break;
+                    case Direction.Right:
+                        sr.sprite = spriteRight;
+                        force = new Vector2(speed, 0);
+
+                        break;
+                    case Direction.Left:
+                        sr.sprite = spriteLeft;
+                        force = new Vector2(-1 * speed, 0);
+
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
+                rigidBody2d.AddForce(force, ForceMode2D.Impulse);
+                yield return new WaitForSeconds(delayBtwShot);
+
+            }
         }
     }
 }

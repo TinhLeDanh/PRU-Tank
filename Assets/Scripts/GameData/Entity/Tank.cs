@@ -9,4 +9,6 @@ public class Tank : BaseEntityData
     public int damage;
     public int health;
     public float speed;
+    public float atkSpeed;
+    public int bulletPerShot;
 }

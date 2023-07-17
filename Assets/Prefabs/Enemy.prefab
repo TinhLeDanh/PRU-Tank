@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 1104279190621613927}
   - component: {fileID: 1445588235494078850}
   - component: {fileID: 1264579893}
+  - component: {fileID: 1222043776104473341}
+  - component: {fileID: -4213192594388864988}
+  - component: {fileID: -6200891836862269103}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -133,3 +136,57 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1222043776104473341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178223789173475439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a39883fe1430543f492e352fc7209104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 43281be6820ca224382d7a0622c13f65, type: 2}
+  floatingPoints: {fileID: 9097374276950681462, guid: a18bb009bc6f08d42a802837f05adde4,
+    type: 3}
+  _tankBot: {fileID: 0}
+  duration: 0
+--- !u!114 &-4213192594388864988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178223789173475439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce52482f72ca442e6b3880f73fb4f360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  moveByCells: 0
+--- !u!114 &-6200891836862269103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178223789173475439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb23512406054bfebb417dfedf21e7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7740309687340280598, guid: 55d77b55c3c7a437ea8d0c1599983c97,
+    type: 3}
+  spriteRight: {fileID: 21300000, guid: 97ce0d674edfe418cabcd19ce0f5b6da, type: 3}
+  spriteLeft: {fileID: 21300000, guid: 6783b99fa46ad430680016ebeb8ea713, type: 3}
+  spriteUp: {fileID: 21300000, guid: 27a8e2e75693e4e69ade2de1a9ac6ce3, type: 3}
+  spriteDown: {fileID: 21300000, guid: c809315d9e24d474ba994bee424cf98c, type: 3}
+  speed: 4
+  maxRange: 10
+  delay: 1
+  lastFire: 0
+  bulletPerShot: 0
